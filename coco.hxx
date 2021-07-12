@@ -52,6 +52,21 @@ public:
         return &coco_year;
     }
 
+    inline unsigned short num_classes() override{
+        return coco_dict.size();
+    }
+
+    inline const CATEGORY_DICT * get_category_dict() override{
+        return &coco_dict;
+    }
+
+    inline const std::string * get_category_name_by_id(unsigned short int class_label) override{
+        if (coco_dict.find(class_label) != coco_dict.end()){
+            return &coco_dict[class_label];
+        }
+    }
+
+
 };
 
 

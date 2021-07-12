@@ -12,6 +12,7 @@ public:
     const std::string get_name();
     virtual unsigned short int num_classes() =0;
     virtual const CATEGORY_DICT * get_category_dict() = 0;
+    virtual const std::string* get_category_name_by_id(unsigned short int)=0;
 
 
 

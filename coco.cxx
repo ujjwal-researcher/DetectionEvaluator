@@ -15,4 +15,3 @@ Coco::Coco(const std::string& dataset_path, std::string dataset_year) : Detectio
         throw std::invalid_argument("The MSCOCO path " + coco_path + " was not found.");
     }
 }
-
