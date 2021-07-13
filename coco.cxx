@@ -3,9 +3,10 @@
 //
 
 #include"coco.hxx"
-#include"base.hxx"
 
-Coco::Coco(const std::string& dataset_path, std::string dataset_year) : DetectionDataset("MSCOCO" + dataset_year),
+
+
+Coco::Coco(const std::string& dataset_path, std::string dataset_year) : DetectionDataset(std::string("MSCOCO").append(dataset_year)),
                                                                         coco_path{dataset_path},
                                                                         coco_year{std::move(dataset_year)}
                                                                         {

@@ -5,7 +5,7 @@
 #include<iostream>
 #include<boost/filesystem.hpp>
 
-bool folder_exists(const std::string * folder_name){
+inline bool folder_exists(const std::string * folder_name){
     boost::filesystem::path folder_path{*folder_name};
     if ( boost::filesystem::is_directory(folder_path) )
         return true;
@@ -13,7 +13,7 @@ bool folder_exists(const std::string * folder_name){
     return false;
 }
 
-bool file_exists(const std::string * file_name){
+inline bool file_exists(const std::string * file_name){
     boost::filesystem::path file_path{*file_name};
     if ( boost::filesystem::is_regular_file(file_path))
         return true;

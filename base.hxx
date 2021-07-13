@@ -9,17 +9,17 @@ private:
 public:
     typedef std::map<unsigned short int, std::string> CATEGORY_DICT;
     DetectionDataset(std::string& name): db_name(name) {}
-    const std::string get_name();
+    inline const std::string get_name(){
+        return db_name;
+    }
     virtual unsigned short int num_classes() =0;
     virtual const CATEGORY_DICT * get_category_dict() = 0;
-    virtual const std::string* get_category_name_by_id(unsigned short int)=0;
+    virtual const std::string get_category_name_by_id(unsigned short int) const=0;
 
 
 
 };
-const std::string DetectionDataset::get_name(){
-    return db_name;
-}
+
 
 
 #endif //DETECTIONEVALUATOR_BASE_HXX
