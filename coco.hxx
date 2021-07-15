@@ -8,6 +8,8 @@
 #include<stdexcept>
 #include"base.hxx"
 #include "utils.hxx"
+#include"bbox.hxx"
+#include<json/value.h>
 
 
 inline const char *COCO_CLASSES[80] = {
@@ -28,6 +30,8 @@ inline const char *COCO_CLASSES[80] = {
 };
 
 
+
+
 class Coco : public DetectionDataset {
 private:
     static const CATEGORY_DICT create_coco_dict() {
@@ -44,10 +48,15 @@ private:
     const std::string coco_path;
     const std::string coco_year;
     static inline const CATEGORY_DICT coco_dict = create_coco_dict();
+    std::map<std::string, std::vector<BBOX>> coco_gt;
+    void add_one_image(const Json::Value , const Json::Value, int, int);
+
 
 
 public:
-    Coco(const std::string &, std::string);
+    Coco(const std::string &, const std::string);
+
+    void read_gt(const std::string);
 
     inline const std::string *get_year() {
         return &coco_year;
@@ -65,9 +74,8 @@ public:
         if (coco_dict.find(class_label) != coco_dict.end()) {
             auto ref = const_cast<CATEGORY_DICT &>(coco_dict);
             return ref[class_label];
-        }
-        else{
-            throw std::invalid_argument("Class label " + std::to_string(class_label) + " was not found." );
+        } else {
+            throw std::invalid_argument("Class label " + std::to_string(class_label) + " was not found.");
         }
     }
 
